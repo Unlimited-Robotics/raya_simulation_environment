@@ -28,7 +28,7 @@ RUN rm -rf /root/ur/deps/
 
 ## DDS Bridge download
 WORKDIR /root/ur
-RUN gdown https://drive.google.com/uc?id=1zBniW4mluz3QW_7xngNL8gX692sUq39N
+RUN gdown https://drive.google.com/uc?id=1jDMSPifkLglZ8dTsuZLwCmJzI5Lios9W
 RUN tar -xzvf bridge_v0.3.0.tar.gz
 RUN mv bridge_v0.3.0 bridge
 RUN rm *.tar.gz
