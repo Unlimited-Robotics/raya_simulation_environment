@@ -8,15 +8,23 @@ RUN echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib' >> /root/.bash
 
 
 # Install general dependencies
-RUN apt-get update
-RUN apt-get install --assume-yes nano lsb-release git dos2unix xterm openssh-client wget tar net-tools
-RUN apt-get install --assume-yes python-pip
+RUN apt-get update && apt-get install -y \
+    dos2unix \
+    git \
+    lsb-release \
+    nano \
+    net-tools \
+    openssh-client \
+    python-pip \
+    tar \
+    wget \
+    xterm
 RUN pip install gdown
 
 # DDS Bridge
 
 ## FastDDS 2.3.0 Installation
-RUN apt-get install --assume-yes build-essential libboost-all-dev libasio-dev avahi-utils
+RUN apt-get update && apt-get install -y build-essential libboost-all-dev libasio-dev avahi-utils
 RUN mkdir -p /root/ur/deps
 WORKDIR /root/ur/deps
 RUN gdown https://drive.google.com/uc?id=1oNQId92JutwbqlHytrKJUFYQK-tkY5sM
@@ -35,9 +43,17 @@ RUN rm *.tar.gz
 
 
 # ROS Packages
-RUN apt-get install --assume-yes ros-melodic-rqt-robot-steering ros-melodic-rviz ros-melodic-compressed-image-transport 
-RUN apt-get install --assume-yes ros-melodic-navigation ros-melodic-teb-local-planner ros-melodic-joint-state-publisher
-RUN apt-get install --assume-yes ros-melodic-joint-state-publisher-gui ros-melodic-robot-state-publisher
+RUN apt-get update && apt-get install -y \
+    ros-melodic-rqt-robot-steering \
+    ros-melodic-rviz \
+    ros-melodic-compressed-image-transport \
+    ros-melodic-navigation \
+    ros-melodic-teb-local-planner \
+    ros-melodic-joint-state-publisher \
+    ros-melodic-joint-state-publisher-gui \
+    ros-melodic-robot-state-publisher \
+    &&  rm -rf /var/lib/apt/lists/*
+
 WORKDIR /root
 RUN gdown https://drive.google.com/uc?id=1jsc1IqPWr-CQc9zhl0H39nQIofyz91zZ
 RUN tar -xzvf raya_unity_ws_20210901.tar.gz
@@ -54,3 +70,4 @@ RUN chmod +x /root/launch_connection.sh
 
 WORKDIR /root
 
+CMD ["/bin/bash", "/root/launch_connection.sh"]

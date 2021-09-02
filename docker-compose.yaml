@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  raya_sim:
+    build: linux_docker
+    ports:
+      - 10000:10000
+      - 5005:5005
+  ggs:
+    build: ./ggs
+    ports:
+      - 8000:8000
+    depends_on:
+      - "raya_sim"
+    env_file:
+      - ./ggs/.env

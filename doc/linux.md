@@ -21,60 +21,55 @@ git checkout devel # Only for get last not stable version
 mkdir -p ~/ur/ && cd ~/ur/
 git clone git@github.com:Unlimited-Robotics/raya_linux_images.git ./linux_images/
 cd ~/ur/linux_images
-git checkout devel # Only for get last not stable version
+git checkout devel # Only to get last not stable version
 ```
 
-## 2. Docker Image
+## 2. Execution
 
-### 2.1. Install Docker
-
-Make sure you have Docker installed and your user can execute docker. (you can follow [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04))
-
-### 2.2. Build and launch container image
-
-``` bash
-cd ~/ur/linux_images/linux_docker/
-docker build -t ros:raya_linux .
-```
-
-Run the container:
-
-``` bash
-docker run -t -d -p 10000:10000 -p 5005:5005 --privileged --name=raya_sim ros:raya_linux
-```
-
-For debugging:
-
-``` bash
-# With GUI:
-docker run -t -d -p 10000:10000 -p 5005:5005 --name=raya_sim --gpus=all --privileged --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" ros:raya_linux
-# With GUI and GPU:
-docker run -t -d -p 10000:10000 -p 5005:5005 --name=raya_sim --privileged --env="DISPLAY" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" ros:raya_linux
-```
-
-## 3. Execution
+### 2.1 Unity Simulator
 
 First, launch the Unity simulator. Download the last build from [here](https://drive.google.com/drive/folders/1DFtWDQ-M6Jqbki_kkaV9_NSIQMhwCylo), and execute the `rayasim.x86_64` binary.
 
-Launch the DDS Bridge and the ROS Unity connection:
 
-``` bash
-docker restart raya_sim
-docker exec -it raya_sim /root/launch_connection.sh
+### 2.2 DDS Bridge and RESTful API
+
+#### 2.2.1 Install Docker
+
+Make sure you have Docker installed and your user can execute docker. (you can follow [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04))
+
+#### 2.2.2 Install docker-compose
+
+You can follow the [official guide](https://docs.docker.com/compose/install/) to install `docker-compose` on your machine. 
+
+#### 2.2.3 Build and launch containers
+
+To build the images and run them you only need to execute the next command in project's base folder:
+```bash
+docker-compose up
+```
+or to run the containers in the background:
+```bash
+docker-compose up -d
 ```
 
-After 5 seconds, you should see an output like:
+After 20 seconds, you should see an output like:
 
 ```
 ...
 (info) [20210902_032256] <RestfulService>: Service Initialized
 (info) [20210902_032257] <NavigationService>: Service Initialized
 UPDATE UNITY SIMULATOR WITH IP: 172.17.0.2
+...
+MainThread : on : startup : 38 : Application startup complete.
 ```
 
-To finish the simuation, press Ctrl+C in the docker terminal and close the Unity simulator. Then, stop the docker container:
+After that you can open http://localhost:8000/examples and follow the instructions to connect and use RESTful API
 
-``` bash
-docker stop raya_sim
+### 2.3. Finish the simulation
+
+To finish the simulation, press Ctrl+C in the docker terminal (if you are not running containers in the background) and close the Unity simulator. Then, stop the docker containers:
+
+To stop the containers:
+```bash
+docker-compose down
 ```
-

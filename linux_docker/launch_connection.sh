@@ -10,7 +10,7 @@ echo "ROS_IP: \"$IP_ADDR\"" > /root/raya_unity_ws/src/raya_simulation_unity/conf
 
 roslaunch raya_simulation_unity unity_all.launch &
 
-sleep 3.0
+sleep 10.0
 
 /root/ur/bridge/dds_robot_bridge -c /root/ur/bridge/config/gary_unity.json &
 
