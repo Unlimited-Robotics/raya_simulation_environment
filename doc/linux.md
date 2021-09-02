@@ -9,10 +9,19 @@ Tested with:
 ## 0. Clone Repository
 
 ``` bash
+# Clone using HTTPS
 mkdir -p ~/ur/ && cd ~/ur/
 git clone https://github.com/Unlimited-Robotics/raya_linux_images ./linux_images/
-git checkout devel # Only for get last not stable version
 cd ~/ur/linux_images
+git checkout devel # Only for get last not stable version
+```
+
+``` bash
+# Clone using SSH
+mkdir -p ~/ur/ && cd ~/ur/
+git clone git@github.com:Unlimited-Robotics/raya_linux_images.git ./linux_images/
+cd ~/ur/linux_images
+git checkout devel # Only for get last not stable version
 ```
 
 ## 2. Docker Image
