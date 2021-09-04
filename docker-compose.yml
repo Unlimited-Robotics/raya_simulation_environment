@@ -1,16 +1,26 @@
 version: '3.8'
 
 services:
-  raya_sim:
-    build: linux_docker
+  ros_ws:
+    build: ./ros_ws
     ports:
       - 10000:10000
       - 5005:5005
+    environment:
+      - "ROS_MASTER_URI=http://ros_ws:11311"
+      - "ROS_HOSTNAME=ros_ws"
+  dds_bridge:
+    build: ./dds_bridge
+    depends_on:
+      - "ros_ws"
+    environment:
+      - "ROS_MASTER_URI=http://ros_ws:11311"
+      - "ROS_HOSTNAME=dds_bridge"
   ggs:
     build: ./ggs
     ports:
       - 8000:8000
     depends_on:
-      - "raya_sim"
+      - "dds_bridge"
     env_file:
       - ./ggs/.env
