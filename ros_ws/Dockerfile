@@ -8,7 +8,8 @@ RUN echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib' >> /root/.bash
 # Install general dependencies
 RUN apt-get update && apt-get install -y \
     git \    
-    net-tools
+    net-tools \
+    dos2unix
 
 # ROS Packages
 RUN apt-get update && apt-get install -y \
@@ -44,6 +45,7 @@ RUN rm -rf /var/lib/apt/lists/*
 
 # Launch Scripts
 COPY ./launch_connection.sh /root/
+RUN dos2unix /root/launch_connection.sh
 RUN chmod +x /root/launch_connection.sh
 
 WORKDIR /root
