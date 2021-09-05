@@ -11,6 +11,9 @@ services:
       - "ROS_HOSTNAME=ros_ws"
   dds_bridge:
     build: ./dds_bridge
+    ports:
+      - 7414:7414/udp
+      - 7415:7415/udp
     depends_on:
       - "ros_ws"
     environment:
