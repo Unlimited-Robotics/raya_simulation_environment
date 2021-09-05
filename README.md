@@ -39,7 +39,7 @@ Now, you can follow the [official guide](https://docs.docker.com/compose/install
 
 ### 2.1. Build Containers
 
-Build all the needed containers by runnning:
+Build all the needed containers by runnning (make sure Docker Engine is running, in macOS and Windows you can execute Docker GUI to make sure):
 
 ``` bash
 cd ~/ur/linux_images
