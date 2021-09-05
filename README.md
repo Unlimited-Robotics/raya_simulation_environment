@@ -48,11 +48,13 @@ docker-compose build
 
 ### 2.2. Unity Simulator
 
+*Before executing the containers*, you must run the Unity simulator.
+
 Download the last build from [here](https://drive.google.com/drive/folders/1DFtWDQ-M6Jqbki_kkaV9_NSIQMhwCylo), and uncompress it.
 
 * *Linux:* Execute the `rayasim.x86_64` binary.
-* *macOS:* Execute the `rayasim` app (`rayasim.app` folder)
-* *Windows:* 
+* *macOS:* Execute the `rayasim` app (`rayasim.app` folder).
+* *Windows:* Execute the `Gary_sim_01.exe`.
 
 
 ### 2.3. Launch the containers
