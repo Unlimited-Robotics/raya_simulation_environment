@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 ## DDS Bridge download
 RUN mkdir -p /root/ur
 WORKDIR /root/ur/
-RUN wget https://github.com/Unlimited-Robotics/ur_dds_robot_bridge/releases/latest/download/bridge.tar.gz
+RUN wget https://github.com/Unlimited-Robotics/ur_dds_robot_bridge/releases/download/v0.3.2/bridge.tar.gz
 RUN tar zxvf bridge.tar.gz
 WORKDIR /root/ur/bridge/fast_dds
 RUN cp -r ./local/ /usr/
