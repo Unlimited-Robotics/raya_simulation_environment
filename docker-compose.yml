@@ -27,3 +27,8 @@ services:
   #     - "dds_bridge"
   #   env_file:
   #     - ./ggs/.env
+  raya_dev:
+    build: ./raya_dev
+    depends_on:
+      - "dds_bridge"
+            
