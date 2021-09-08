@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
     ros-melodic-robot-state-publisher
     
 WORKDIR /root
-RUN git clone --recurse-submodules https://github.com/Unlimited-Robotics/raya_unity_ws
+RUN git clone --branch v0.2 --depth 1 --recurse-submodules https://github.com/Unlimited-Robotics/raya_unity_ws
 WORKDIR /root/raya_unity_ws/
 RUN /bin/bash -c "source /opt/ros/melodic/setup.bash && rosdep update"
 RUN /bin/bash -c "source /opt/ros/melodic/setup.bash && rosdep install --from-paths src --ignore-src -r -y"
@@ -33,7 +33,7 @@ RUN echo 'source ~/raya_unity_ws/devel/setup.bash' >> /root/.bashrc
 
 RUN rm -rf /var/lib/apt/lists/*
 
-# Launch Scripts
+# Launch Scripts    
 COPY ./launch_connection.sh /root/
 RUN dos2unix /root/launch_connection.sh
 RUN chmod +x /root/launch_connection.sh
