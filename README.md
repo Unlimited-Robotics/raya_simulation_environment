@@ -6,14 +6,16 @@ Linux Images for Unlimited Robotics ROS Workspace
 
 ## 0. Clone the Repository
 
-Get the repo:
+Clone for production:
 
 ``` bash
 # Clone using HTTPS
 mkdir -p ~/ur/ && cd ~/ur/
-git clone --recurse-submodules https://github.com/Unlimited-Robotics/raya_linux_images ./linux_images/
+git clone --recurse-submodules --depth 1 https://github.com/Unlimited-Robotics/raya_linux_images ./linux_images/
 cd ~/ur/linux_images
 ```
+
+Clone for developing:
 
 ``` bash
 # Clone using SSH

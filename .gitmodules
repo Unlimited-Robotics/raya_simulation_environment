@@ -2,3 +2,4 @@
 	path = ggs
 	url = https://github.com/Unlimited-Robotics/gary_gateway_service
 	branch = main
+	shallow = true
