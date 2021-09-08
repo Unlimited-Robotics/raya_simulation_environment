@@ -12,7 +12,7 @@ RUN mkdir -p /root/.vscode-server/bin/latest
 RUN tar zxvf vscode-server-linux-x64.tar.gz -C /root/.vscode-server/bin/latest/ --strip 1
 RUN touch /root/.vscode-server/bin/latest/0
 RUN rm -f vscode-server-linux-x64.tar.gz
-RUN echo "export PS1='raya@simulator$ '" >> .bashrc
+RUN echo "export PS1='raya@simulator:\w\$ '" >> .bashrc
 
 WORKDIR /root
 
