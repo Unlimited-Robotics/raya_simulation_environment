@@ -1,4 +1,4 @@
 [submodule "ggs"]
 	path = ggs
-  url = https://github.com/Unlimited-Robotics/gary_gateway_service
-  branch = main
+	url = https://github.com/Unlimited-Robotics/gary_gateway_service
+	branch = main
