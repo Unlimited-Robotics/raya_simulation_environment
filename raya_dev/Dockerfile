@@ -1,5 +1,8 @@
 FROM continuumio/miniconda3:4.10.3-alpine
 
+# Install packages
+RUN apk add --no-cache nano
+
 # Create conda environment with the dependencies
 RUN pip install rayasdk
 
