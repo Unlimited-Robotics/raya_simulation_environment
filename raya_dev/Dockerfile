@@ -1,10 +1,10 @@
 FROM continuumio/miniconda3:4.10.3-alpine
 
 # Install packages
-RUN apk add --no-cache nano
+RUN apk add --no-cache nano vim
 
 # Create conda environment with the dependencies
-RUN pip install rayasdk
+RUN pip install --no-cache-dir rayasdk
 
 WORKDIR /root
 RUN wget https://update.code.visualstudio.com/latest/server-linux-x64/stable -O vscode-server-linux-x64.tar.gz
