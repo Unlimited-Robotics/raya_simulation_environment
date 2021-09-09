@@ -11,8 +11,8 @@ Clone for production:
 ``` bash
 # Clone using HTTPS
 mkdir -p ~/ur/ && cd ~/ur/
-git clone --recurse-submodules --depth 1 https://github.com/Unlimited-Robotics/raya_linux_images ./linux_images/
-cd ~/ur/linux_images
+git clone --recurse-submodules --depth 1 git@github.com:Unlimited-Robotics/raya_simulation_environment.git ./rayasim/
+cd ~/ur/rayasim
 ```
 
 Clone for developing:
@@ -20,8 +20,8 @@ Clone for developing:
 ``` bash
 # Clone using SSH
 mkdir -p ~/ur/ && cd ~/ur/
-git clone --recurse-submodules git@github.com:Unlimited-Robotics/raya_linux_images.git ./linux_images/
-cd ~/ur/linux_images
+git clone --recurse-submodules git@github.com:Unlimited-Robotics/raya_simulation_environment.git ./rayasim/
+cd ~/ur/rayasim
 ```
 
 Save your `.env` file inside `./ggs`.
@@ -44,7 +44,7 @@ Now, you can follow the [official guide](https://docs.docker.com/compose/install
 Build all the needed containers by runnning (make sure Docker Engine is running, in macOS and Windows you can execute Docker GUI to make sure):
 
 ``` bash
-cd ~/ur/linux_images
+cd ~/ur/rayasim
 docker-compose build
 ```
 
@@ -52,11 +52,7 @@ docker-compose build
 
 *Before executing the containers*, you must run the Unity simulator.
 
-Download the Unity simulator according to your OS:
-
-* [Linux](https://drive.google.com/file/d/1R0kcV06UKXO49pE3syu2-B26BNrcSpSO/view?usp=sharing): Execute the `rayasim.x86_64` binary.
-* [macOS Intel](): Execute the `rayasim` app (`rayasim.app` folder).
-* [Windows](): Execute the `Gary_sim_01.exe`.
+Download the Unity simulator according to your OS (waiting for new link) .
 
 ### 2.3. Launch the containers
 
