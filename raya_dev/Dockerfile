@@ -1,7 +1,7 @@
 FROM continuumio/miniconda3:4.10.3-alpine
 
 # Install packages
-RUN apk add --no-cache nano vim
+RUN apk add --no-cache nano vim mesa-gl glib
 
 # Create conda environment with the dependencies
 RUN pip install --no-cache-dir rayasdk
@@ -16,5 +16,5 @@ RUN echo "export PS1='raya@simulator:\w\$ '" >> .bashrc
 
 WORKDIR /root
 
-# Wait for 5 seconds before running the APi to give time to another container to start
-CMD ["tail", "-F", "anything"]
+RUN touch foo.txt
+CMD ["tail", "-F", "foo.txt"]
