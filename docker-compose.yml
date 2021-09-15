@@ -19,14 +19,14 @@ services:
     environment:
       - "ROS_MASTER_URI=http://ros_ws:11311"
       - "ROS_HOSTNAME=dds_bridge"
-  ggs:
-    build: ./ggs
-    ports:
-      - 8000:8000
-    depends_on:
-      - "dds_bridge"
-    env_file:
-      - ./ggs/.env
+  # ggs:
+  #   build: ./ggs
+  #   ports:
+  #     - 8000:8000
+  #   depends_on:
+  #     - "dds_bridge"
+  #   env_file:
+  #     - ./ggs/.env
   raya_dev:
     build: ./raya_dev
     depends_on:
