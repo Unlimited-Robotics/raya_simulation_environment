@@ -9,7 +9,8 @@ RUN echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib' >> /root/.bash
 RUN apt-get update && apt-get install -y \
     git \    
     net-tools \
-    dos2unix
+    dos2unix \
+    netcat
 
 # ROS Packages
 RUN apt-get update && apt-get install -y \
@@ -38,6 +39,13 @@ COPY ./launch_connection.sh /root/
 RUN dos2unix /root/launch_connection.sh
 RUN chmod +x /root/launch_connection.sh
 
+COPY ./test_ready.sh /root/
+RUN dos2unix /root/test_ready.sh
+RUN chmod +x /root/test_ready.sh
+
 WORKDIR /root
+
+# RUN touch foo.txt
+# CMD ["tail", "-F", "foo.txt"]
 
 CMD ["/bin/bash", "/root/launch_connection.sh"]

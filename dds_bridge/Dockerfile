@@ -8,20 +8,31 @@ RUN echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib' >> /root/.bash
 # Install general dependencies
 RUN apt-get update && apt-get install -y \
     git \
-    wget
+    wget \
+    netcat \
+    dos2unix \
+    && rm -rf /var/lib/apt/lists/*
 
 ## DDS Bridge download
 RUN mkdir -p /root/ur
 WORKDIR /root/ur/
-RUN wget https://github.com/Unlimited-Robotics/ur_dds_robot_bridge/releases/download/v0.4.4/bridge.tar.gz
+RUN wget https://github.com/Unlimited-Robotics/ur_dds_robot_bridge/releases/download/v0.4.6/bridge.tar.gz
 RUN tar zxvf bridge.tar.gz
 WORKDIR /root/ur/bridge/fast_dds
 RUN cp -r ./local/ /usr/
 WORKDIR /root/ur/bridge
 RUN rm -r ./fast_dds
 
-RUN rm -rf /var/lib/apt/lists/*
+# Launch Scripts    
+COPY ./launch_bridge.sh /root/
+RUN dos2unix /root/launch_bridge.sh
+RUN chmod +x /root/launch_bridge.sh
+
+# Launch Scripts    
+COPY ./test_ready.sh /root/
+RUN dos2unix /root/test_ready.sh
+RUN chmod +x /root/test_ready.sh
 
 WORKDIR /root
 
-CMD ["bash", "-c", "/root/ur/bridge/dds_robot_bridge -c /root/ur/bridge/config/gary_unity.json"]
+CMD ["bash", "/root/launch_bridge.sh"]
