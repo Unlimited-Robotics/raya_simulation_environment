@@ -23,8 +23,8 @@ services:
     build: ./ggs
     ports:
       - 8000:8000
-    # depends_on:
-    #   - "dds_bridge"
+    depends_on:
+      - "dds_bridge"
     env_file:
       - ./ggs/.env
     command: >
@@ -37,8 +37,8 @@ services:
         echo 'DDS Bridge ready!';
         source activate ggs && python main.py;
       "
-  # raya_dev:
-  #   build: ./raya_dev
-  #   depends_on:
-  #     - "dds_bridge"
+  raya_dev:
+    build: ./raya_dev
+    depends_on:
+      - "dds_bridge"
             
