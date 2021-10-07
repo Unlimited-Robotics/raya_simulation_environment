@@ -4,6 +4,7 @@ FROM continuumio/miniconda3:4.10.3-alpine
 RUN apk add --no-cache nano vim mesa-gl glib py3-qt5
 
 # Create conda environment with the dependencies
+RUN pip install --no-cache-dir raya==0.7.0rc1
 RUN pip install --no-cache-dir rayasdk
 
 WORKDIR /root

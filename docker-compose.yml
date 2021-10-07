@@ -37,8 +37,8 @@ services:
   #       echo 'DDS Bridge ready!';
   #       source activate ggs && python main.py;
   #     "
-  # raya_dev:
-  #   build: ./raya_dev
-  #   depends_on:
-  #     - "dds_bridge"
+  raya_dev:
+    build: ./raya_dev
+    depends_on:
+      - "dds_bridge"
             
