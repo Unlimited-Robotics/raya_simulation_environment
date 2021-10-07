@@ -6,6 +6,7 @@ services:
     ports:
       - 10000:10000
       - 5005:5005
+      - 8080:8080
     environment:
       - "ROS_MASTER_URI=http://ros_ws:11311"
       - "ROS_HOSTNAME=ros_ws"
