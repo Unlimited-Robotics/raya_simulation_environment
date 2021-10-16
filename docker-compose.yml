@@ -40,6 +40,7 @@ services:
       "
     environment:
       - LOG_LEVEL=DEBUG
+      - VIDEO_STREAM_URL=http://ros_ws:8080/raya/cameras/stream/
   raya_dev:
     build: ./raya_dev
     depends_on:
