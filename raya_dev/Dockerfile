@@ -6,8 +6,8 @@ WORKDIR /root
 RUN apk add --no-cache nano vim mesa-gl glib py3-qt5
 
 # Create conda environment with the dependencies
-RUN pip install --no-cache-dir raya==0.7.0rc1 && \
-    pip install --no-cache-dir rayasdk
+RUN pip install --no-cache-dir rayasdk && \
+    pip install --no-cache-dir raya==0.7
 
 RUN wget https://update.code.visualstudio.com/latest/server-linux-x64/stable -O vscode-server-linux-x64.tar.gz && \
     mkdir -p /root/.vscode-server/bin/latest && \
@@ -16,6 +16,8 @@ RUN wget https://update.code.visualstudio.com/latest/server-linux-x64/stable -O 
     rm -f vscode-server-linux-x64.tar.gz
 
 RUN echo "export PS1='raya@simulator:\w\$ '" >> .bashrc && \
+    echo "export DISPLAY=host.docker.internal:0.0" >> .bashrc && \
+    echo "export LIBGL_ALWAYS_INDIRECT=" >> .bashrc && \
     touch foo.txt
-
+    
 CMD ["tail", "-F", "foo.txt"]
