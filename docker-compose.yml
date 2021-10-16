@@ -44,4 +44,6 @@ services:
     build: ./raya_dev
     depends_on:
       - "dds_bridge"
+    volumes:
+    - ./raya_projects/:/root/raya_projects/
             
