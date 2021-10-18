@@ -6,6 +6,7 @@ services:
     ports:
       - 10000:10000
       - 5005:5005
+      - 8080:8080
     environment:
       - "ROS_MASTER_URI=http://ros_ws:11311"
       - "ROS_HOSTNAME=ros_ws"
@@ -37,8 +38,13 @@ services:
         echo 'DDS Bridge ready!';
         source activate ggs && python main.py;
       "
+    environment:
+      - LOG_LEVEL=DEBUG
+      - VIDEO_STREAM_URL=http://ros_ws:8080/raya/cameras/stream/
   raya_dev:
     build: ./raya_dev
     depends_on:
       - "dds_bridge"
+    volumes:
+    - ./raya_projects/:/root/raya_projects/
             
