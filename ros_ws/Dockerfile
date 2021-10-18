@@ -28,8 +28,8 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && \
-    git clone --branch v0.6 --depth 1 --recurse-submodules https://github.com/Unlimited-Robotics/raya_unity_ws && \
-    cd /root/raya_unity_ws/ && \
+    git clone --branch v0.8 --depth 1 --recurse-submodules https://github.com/Unlimited-Robotics/raya_ws && \
+    cd /root/raya_ws/ && \
     /bin/bash -c " \
         source /opt/ros/melodic/setup.bash && \
         rosdep update && \
@@ -37,18 +37,8 @@ RUN apt-get update && \
         catkin_make --only-pkg-with-deps raya_msgs && \
         catkin_make -DCATKIN_WHITELIST_PACKAGES='' " && \
     echo 'source /opt/ros/melodic/setup.bash' >> /root/.bashrc && \
-    echo 'source ~/raya_unity_ws/devel/setup.bash' >> /root/.bashrc && \
+    echo 'source ~/raya_ws/devel/setup.bash' >> /root/.bashrc && \
     rm -rf /var/lib/apt/lists/*
-
-# RUN git clone --branch v0.6 --depth 1 --recurse-submodules https://github.com/Unlimited-Robotics/raya_unity_ws
-# WORKDIR /root/raya_unity_ws/
-# RUN /bin/bash -c "source /opt/ros/melodic/setup.bash && rosdep update"
-# RUN /bin/bash -c "source /opt/ros/melodic/setup.bash && rosdep install --from-paths src --ignore-src -r -y"
-# RUN /bin/bash -c "source /opt/ros/melodic/setup.bash && catkin_make --only-pkg-with-deps raya_msgs"
-# RUN /bin/bash -c "source /opt/ros/melodic/setup.bash && catkin_make -DCATKIN_WHITELIST_PACKAGES=''"
-# RUN echo 'source /opt/ros/melodic/setup.bash' >> /root/.bashrc
-# RUN echo 'source ~/raya_unity_ws/devel/setup.bash' >> /root/.bashrc
-# RUN rm -rf /var/lib/apt/lists/*
 
 # Launch Scripts    
 COPY ./launch_connection.sh /root/

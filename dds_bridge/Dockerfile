@@ -27,15 +27,6 @@ RUN mkdir -p /root/ur && \
     cd /root/ur/bridge && \
     rm -r ./fast_dds
 
-# RUN mkdir -p /root/ur
-# WORKDIR /root/ur/
-# RUN wget https://github.com/Unlimited-Robotics/ur_dds_robot_bridge/releases/download/v0.5.0/bridge.tar.gz
-# RUN tar zxvf bridge.tar.gz
-# WORKDIR /root/ur/bridge/fast_dds
-# RUN cp -r ./local/ /usr/
-# WORKDIR /root/ur/bridge
-# RUN rm -r ./fast_dds
-
 # Launch Scripts    
 COPY ./launch_bridge.sh /root/
 COPY ./test_ready.sh /root/
