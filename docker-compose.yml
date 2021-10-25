@@ -1,36 +1,35 @@
 version: '3.8'
 
 services:
+
   ros_ws:
     build: ./ros_ws
-    ports:
-      - 10000:10000
-      - 5005:5005
-      - 8080:8080
-    environment:
-      - "ROS_MASTER_URI=http://ros_ws:11311"
-      - "ROS_HOSTNAME=ros_ws"
+    network_mode: host
+
+
   dds_bridge:
     build: ./dds_bridge
-    ports:
-      - 7414:7414/udp
-      - 7415:7415/udp
+    network_mode: host
+    user: raya
     depends_on:
       - "ros_ws"
-    environment:
-      - "ROS_MASTER_URI=http://ros_ws:11311"
-      - "ROS_HOSTNAME=dds_bridge"
+    volumes:
+      - /dev/shm:/dev/shm
+
+
   ggs:
-    build: ./ggs
-    ports:
-      - 8000:8000
+    build: 
+      context: ./ggs
+      dockerfile: ../override_dockerfiles/ggs.dockerfile
+    network_mode: host
+    user: raya
     depends_on:
       - "dds_bridge"
     env_file:
       - ./ggs/.env
     command: >
       /bin/bash -c "
-        while ! nc -z dds_bridge 8881;
+        while ! nc -z localhost 8881;
         do
           echo 'Waiting for DDS Bridge...';
           sleep 3.0;
@@ -41,10 +40,13 @@ services:
     environment:
       - LOG_LEVEL=DEBUG
       - VIDEO_STREAM_URL=http://ros_ws:8080/raya/cameras/stream/
-  raya_dev:
-    build: ./raya_dev
-    depends_on:
-      - "dds_bridge"
     volumes:
-    - ./raya_projects/:/root/raya_projects/
+      - /dev/shm:/dev/shm
+
+  # raya_dev:
+  #   build: ./raya_dev
+  #   depends_on:
+  #     - "dds_bridge"
+  #   volumes:
+  #   - ./raya_projects/:/root/raya_projects/
             
