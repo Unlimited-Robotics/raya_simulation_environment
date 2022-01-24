@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   ros_ws:
-    build: ./ros_ws
+    build: ./raya_ws
     ports:
       - 10000:10000
       - 5005:5005

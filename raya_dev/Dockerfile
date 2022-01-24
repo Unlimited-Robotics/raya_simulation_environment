@@ -6,7 +6,7 @@ WORKDIR /root
 RUN apk add --no-cache nano vim mesa-gl glib py3-qt5
 
 # Create conda environment with the dependencies
-RUN pip install --no-cache-dir rayasdk && \
+RUN pip install --no-cache-dir rayasdk==0.2.4 && \
     pip install --no-cache-dir raya==0.7
 
 RUN wget https://update.code.visualstudio.com/latest/server-linux-x64/stable -O vscode-server-linux-x64.tar.gz && \

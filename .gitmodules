@@ -2,3 +2,6 @@
 [submodule "ggs"]
 	path = ggs
 	url = https://github.com/Unlimited-Robotics/gary_gateway_service
+[submodule "raya_ws"]
+	path = raya_ws
+	url = https://github.com/Unlimited-Robotics/raya_ws
